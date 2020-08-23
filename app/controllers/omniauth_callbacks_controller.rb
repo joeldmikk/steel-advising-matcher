@@ -1,10 +1,8 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-# replace with your authenticate method
-#   skip_before_action :authenticate_user!
+  skip_before_action :authenticate_user!
 
   def google_oauth2
     auth = request.env["omniauth.auth"]
-    puts "#{auth}"
     user = User.where(provider: auth["provider"], uid: auth["uid"])
             .first_or_initialize(email: auth["info"]["email"])
     user.name ||= auth["info"]["name"]
@@ -18,7 +16,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   protected
 
   def after_omniauth_failure_path_for(_scope)
-    # new_user_session_path
     new_session_path
   end
 
