@@ -1,3 +1,7 @@
 Pomodoros
 1) devise installation
 2) oauth experimentation
+3) oauth done -- interrupted
+
+Evening
+~1 hour - finished template
