@@ -11,9 +11,28 @@ module Template
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
+    Rails.application.config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [:get, :post, :patch, :put]
+      end
+    end
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    # config.middleware.insert_before 0, "Rack::Cors" do
+    #   allow do
+    #     origins 'http://localhost:3001'
+    #     resource(
+    #       '*',
+    #       headers: :any,
+    #       methods: [:get, :patch, :put, :delete, :post, :options]
+    #       )
+    #   end
+    # end
+
   end
 end
