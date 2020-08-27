@@ -1,17 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Container, Row, Col } from 'react-bootstrap'
-
-const styling = {
-    flex: {
-        display: 'flex'
-    },
-    item: {
-        border: "solid 1px red",
-        margin: 5,
-        padding: 10
-    }
-}
+import { Container, Row, Col } from 'react-bootstrap';
 
 export class Flex extends React.Component {
 
@@ -25,7 +14,7 @@ export class Flex extends React.Component {
         <Container>
             {
                 this.props.data &&
-                this.props.data.map(row => {return <Row className="justify-content-md-center">{row}</Row>})
+                this.props.data.map(row => {return <Row>{row}</Row>})
             }
         </Container>
     // <div style={styling.flex} flexDirection="row">{this.props.data &&
@@ -46,24 +35,24 @@ export class FlexRow extends React.Component {
       }
     render () {
         return (
-            <Col>
+            <Row>
             { this.props.children &&
                 this.props.children.map(item => {return <Col>{item}</Col>})
             }
-        </Col>
+        </Row>
         )
     }
 }
 
-export class FlexItem extends React.Component {
-    constructor(props) {
-        super(props);
-      }
-    render () {
-        return (
-            <div style={styling.item}>{this.props.children}</div>
-        );
-    }
-}
+// export class FlexItem extends React.Component {
+//     constructor(props) {
+//         super(props);
+//       }
+//     render () {
+//         return (
+//             this.props.children
+//         );
+//     }
+// }
 
 

@@ -1,32 +1,26 @@
 import React from "react"
-import { Flex } from './Flex.js';
+import { Container, Row, Col } from 'react-bootstrap';
 import PropTypes from "prop-types";
+import { GRID_STRUCTURE } from "../constants.js";
 
-const PSYCHOLOGY = "PSYCHOLOGY";
-const SUBSTANCE = "SUBSTANCE_USE_MISUSE";
-const ADHD = "ADHD_OCD";
-const PURE_EF = "PURE_EXECUTIVE_FUNCTIONING";
-const NEW_PROFESSIONALS = "NEW_PROFESSIONALS";
-const TRANSIITONING = "TRANSITIONING_CAREERS";
-const BURNOUT = "MANAGING_BURNOUT";
-const FLOURISHING = "FLOURISHING";
 
-const dummyData = [
-    [0,1,2,3,4,5,6,7],
-    [0,1,2,3,4,5,6,7],
-    [0,1,2,3,4,5,6,7],
-    [0,1,2,3,4,5,6,7],
-    [0,1,2,3,4,5,6,7],
-    [0,1,2,3,4,5,6,7],
-    [0,1,2,3,4,5,6,7],
-    [0,1,2,3,4,5,6,7]
-];
-
-const data = [
-    [
-        PSYCHOLOGY, SUBSTANCE. ADHD, PURE_EF, NEW_PROFESSIONALS, TRANSIITONING, BURNOUT, FLOURISHING
-    ]
-]
+const bgColor = {
+  header: {
+    backgroundColor: 'rgb(34, 39, 139)', //'#22278b',
+    color: 'white',
+    justifyContent: 'center',
+    height: 80,
+    display: 'flex',
+    alignItems: 'center',
+    border: 'solid 1px black'
+  },
+  body: {
+    backgroundColor: 'rgb(146, 150, 228)', //'#9296e4'
+    color: 'white',
+    border: 'solid 1px black',
+    height: 80
+  }
+}
 
 class TalentMatrix extends React.Component {
     // var ButtonToolbar = ReactBootstrap.ButtonToolbar;
@@ -35,7 +29,27 @@ class TalentMatrix extends React.Component {
 
   render () {
     return (
-        <Flex data={data} />
+        <>
+          <Container fluid>
+          {
+            GRID_STRUCTURE.map(row => {
+              return (
+                <Row>
+                  {
+                    row.map(cell => {
+                      return (
+                        <Col xs key={cell.id} style={bgColor[cell.type]}>
+                          {cell.label}
+                        </Col>
+                      )
+                    })
+                  }
+                </Row>
+              )
+            })
+          }
+        </Container>
+        </>
     );
   }
 }
