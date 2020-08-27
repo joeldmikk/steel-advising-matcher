@@ -40,13 +40,6 @@ const styles = {
 }
 
 class TalentMatrix extends React.Component {
-    // var ButtonToolbar = ReactBootstrap.ButtonToolbar;
-
-    // console.log('dummyData!: ', dummyData);
-
-  // const handleClick = (event) => {
-  //   alert(event.target.value);
-  // }
 
   render () {
     return (
@@ -60,15 +53,13 @@ class TalentMatrix extends React.Component {
                 >
                   {
                     row.map(cell => {
-                      // console.log('cell: ', cell);
-                      // console.log('style: ', styles[cell.category][cell.type])
                       return (
                         <Col xs
                           key={cell.id}
                           style={{
                             // color: 'white',
                             border: 'solid 1px black',
-                            height: 80,
+                            height: 100,
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',

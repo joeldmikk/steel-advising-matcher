@@ -8,12 +8,12 @@ class NavbarHeader extends React.Component {
     const { current_user } = this.props;
     return (
       <React.Fragment>
-        <Navbar bg="primary" variant="dark" style={{backgroundColor: 'rgb(34, 39, 139)'}}>
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+        <Navbar variant="dark" style={{backgroundColor: 'rgb(34, 39, 139)'}}>
+          <Navbar.Brand href="#home">Steel Advising Talent Matrix</Navbar.Brand>
           <Nav className="mr-auto">
-            <Nav.Link href="home">Home</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="clients">Clients</Nav.Link>
-            <Nav.Link href="pricing">Consultants</Nav.Link>
+            <Nav.Link href="consultants">Consultants</Nav.Link>
           </Nav>
 
           
