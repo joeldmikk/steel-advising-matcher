@@ -2,23 +2,40 @@ import React from "react"
 import { Container, Row, Col } from 'react-bootstrap';
 import PropTypes from "prop-types";
 import { GRID_STRUCTURE } from "../constants.js";
+import { MatrixCell } from './talentMatrix/MatrixCell';
 
-
-const bgColor = {
-  header: {
-    backgroundColor: 'rgb(34, 39, 139)', //'#22278b',
-    color: 'white',
-    justifyContent: 'center',
-    height: 80,
-    display: 'flex',
-    alignItems: 'center',
-    border: 'solid 1px black'
+const styles = {
+  'PSYCHOLOGY': {
+    header: {
+      backgroundColor: 'rgb(0, 191, 154)',
+    },
+    body: {
+      backgroundColor: 'rgb(191, 255, 242)',
+    },
   },
-  body: {
-    backgroundColor: 'rgb(146, 150, 228)', //'#9296e4'
-    color: 'white',
-    border: 'solid 1px black',
-    height: 80
+  'EDUCATION': {
+    header: {
+      backgroundColor: 'rgb(34, 39, 139)',
+    },
+    body: {
+      backgroundColor: 'rgb(146, 150, 228)',
+    },
+  },
+  'FLOURISHING': {
+    header: {
+      backgroundColor: 'rgb(34, 39, 139)',
+    },
+    body: {
+      backgroundColor: 'rgb(146, 150, 228)',
+    },
+  },
+  'LEADERSHIP': {
+    header: {
+      backgroundColor: 'rgb(255, 147, 30)',
+    },
+    body: {
+      backgroundColor: 'rgb(254, 233, 210)',
+    },
   }
 }
 
@@ -27,6 +44,10 @@ class TalentMatrix extends React.Component {
 
     // console.log('dummyData!: ', dummyData);
 
+  // const handleClick = (event) => {
+  //   alert(event.target.value);
+  // }
+
   render () {
     return (
         <>
@@ -34,12 +55,32 @@ class TalentMatrix extends React.Component {
           {
             GRID_STRUCTURE.map(row => {
               return (
-                <Row>
+                <Row
+                  key={row[0].id}
+                >
                   {
                     row.map(cell => {
+                      // console.log('cell: ', cell);
+                      // console.log('style: ', styles[cell.category][cell.type])
                       return (
-                        <Col xs key={cell.id} style={bgColor[cell.type]}>
-                          {cell.label}
+                        <Col xs
+                          key={cell.id}
+                          style={{
+                            // color: 'white',
+                            border: 'solid 1px black',
+                            height: 80,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            ...styles[cell.category][cell.type]
+                          }}
+                          onClick={() => {console.log('clicked: ', cell.id)}}
+                        >
+                          <MatrixCell
+                            key={cell.id}
+                          >
+                            {cell}
+                          </MatrixCell>
                         </Col>
                       )
                     })
