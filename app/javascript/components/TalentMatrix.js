@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { Container, Row, Col } from 'react-bootstrap';
 import PropTypes from "prop-types";
 import { GRID_STRUCTURE } from "../constants.js";
@@ -37,11 +37,38 @@ const styles = {
       backgroundColor: 'rgb(254, 233, 210)',
     },
   }
-}
+};
 
 class TalentMatrix extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selected: [],
+      contents: {},
+    }
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(val) {
+
+    if (this.props.mode === 'form') {
+      let nextSelected = this.state.selected;
+      if (nextSelected.includes(val)) {
+        var index = nextSelected.indexOf(val);
+        nextSelected.splice(index, 1);
+      } else {
+        nextSelected = [...nextSelected, val];
+      }
+      this.setState({selected: nextSelected})
+      console.log('nextSelected: ', nextSelected);
+      const jsonNextSelected = JSON.stringify(nextSelected);
+      document.getElementById(this.props.talent_input_id).value=jsonNextSelected
+    }
+  }
 
   render () {
+    const { selected } = this.state;
+    console.log('this.props: ', this.props);
     return (
         <>
           <Container fluid>
@@ -53,6 +80,9 @@ class TalentMatrix extends React.Component {
                 >
                   {
                     row.map(cell => {
+                      if (selected.includes(cell.id)) {
+                        cell.label = "selected"
+                      }
                       return (
                         <Col xs
                           key={cell.id}
@@ -63,9 +93,9 @@ class TalentMatrix extends React.Component {
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            ...styles[cell.category][cell.type]
+                            ...styles[cell.category][cell.type],
                           }}
-                          onClick={() => {console.log('clicked: ', cell.id)}}
+                          onClick={() => { this.handleClick(cell.id) }}
                         >
                           <MatrixCell
                             key={cell.id}
@@ -85,6 +115,54 @@ class TalentMatrix extends React.Component {
     );
   }
 }
+
+
+
+
+  // render () {
+  //   console.log('this.props: ', this.props)
+  //   return (
+  //       <>
+  //         <Container fluid>
+  //         {
+  //           GRID_STRUCTURE.map(row => {
+  //             return (
+  //               <Row
+  //                 key={row[0].id}
+  //               >
+  //                 {
+  //                   row.map(cell => {
+  //                     return (
+  //                       <Col xs
+  //                         key={cell.id}
+  //                         style={{
+  //                           // color: 'white',
+  //                           border: 'solid 1px black',
+  //                           height: 100,
+  //                           display: 'flex',
+  //                           alignItems: 'center',
+  //                           justifyContent: 'center',
+  //                           ...styles[cell.category][cell.type]
+  //                         }}
+  //                         onClick={() => { console.log('clicked: ', cell.id)}}
+  //                       >
+  //                         <MatrixCell
+  //                           key={cell.id}
+  //                         >
+  //                           {cell}
+  //                         </MatrixCell>
+  //                       </Col>
+  //                     )
+  //                   })
+  //                 }
+  //               </Row>
+  //             )
+  //           })
+  //         }
+  //       </Container>
+  //       </>
+  //   );
+  // }
 
 TalentMatrix.propTypes = {
   greeting: PropTypes.string

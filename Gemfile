@@ -37,6 +37,9 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'react-rails'
 gem 'react-bootstrap-rails'
 
+# bootstrap
+gem "bootstrap_form"
+
 # allow CORS
 gem 'rack-cors'
 
