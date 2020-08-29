@@ -12,8 +12,8 @@ class NavbarHeader extends React.Component {
           <Navbar.Brand href="#home">Steel Advising Talent Matrix</Navbar.Brand>
           <Nav className="mr-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="clients">Clients</Nav.Link>
-            <Nav.Link href="consultants">Consultants</Nav.Link>
+            <Nav.Link href="/clients">Clients</Nav.Link>
+            <Nav.Link href="/consultants">Consultants</Nav.Link>
           </Nav>
 
           

@@ -6,9 +6,8 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Email</th>
-      <th>Notes</th>
       <th>Talents</th>
+      <th>Clients</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,9 +16,12 @@
     <% @consultants.each do |consultant| %>
       <tr>
         <td><%= consultant.name %></td>
-        <td><%= consultant.email %></td>
-        <td><%= consultant.notes %></td>
-        <td><%= consultant.talents %></td>
+        <td><%#= consultant.email %></td>
+        <td><%#= consultant.notes %></td>
+        <td> 
+          <%= react_component("TalentMatrix", { mode: 'inline', selected: consultant&.talents, context: consultant.id }) %>
+        </td>
+        <td><%= consultant.clients.map(&:name) %></td>
         <td><%= link_to 'Show', consultant %></td>
         <td><%= link_to 'Edit', edit_consultant_path(consultant) %></td>
         <td><%= link_to 'Destroy', consultant, method: :delete, data: { confirm: 'Are you sure?' } %></td>

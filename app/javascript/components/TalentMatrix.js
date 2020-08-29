@@ -39,18 +39,42 @@ const styles = {
   }
 };
 
+// const props = {
+//   mode: ['display', 'form', 'inline'],
+//   selected: [],
+//   talent_input_id: '', // only used in form mode
+//   contents: {"CELL_ID": ["Client 1", "Client 2"]}
+// }
+
+const INLINE_MATRIX_CELL_HEIGHT = 20;
+const DISPLAY_MATRIX_CELL_HEIGHT = 100;
+const FORM_MATRIX_CELL_HEIGHT = 100;
+// const 
+
 class TalentMatrix extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: [],
+      selected: JSON.parse(this.props.selected) || [],
       contents: {},
     }
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(val) {
+  populateGridContents = () => {
+    if (this.props.content) {
+      return GRID_STRUCTURE.map((cell) => {
+        const nextCell = Object.assign({}, cell);
+        console.log("nextCell: ", nextCell);
+        this.props.content[nextCell.id]
+        nextCell.content = this.props.content[nextCell.id]
+        return nextCell;
+      })
+    }
+    return GRID_STRUCTURE;
+  }
 
+  handleClick(val) {
     if (this.props.mode === 'form') {
       let nextSelected = this.state.selected;
       if (nextSelected.includes(val)) {
@@ -60,45 +84,95 @@ class TalentMatrix extends React.Component {
         nextSelected = [...nextSelected, val];
       }
       this.setState({selected: nextSelected})
-      console.log('nextSelected: ', nextSelected);
       const jsonNextSelected = JSON.stringify(nextSelected);
       document.getElementById(this.props.talent_input_id).value=jsonNextSelected
     }
   }
 
+  getRenderProps() {
+    switch(this.props.mode) {
+      case 'display':
+        return ({
+          cellHeight: DISPLAY_MATRIX_CELL_HEIGHT,
+        })
+      case 'form':
+        return ({
+          cellHeight: FORM_MATRIX_CELL_HEIGHT,
+        })
+      case 'inline':
+        return ({
+          cellHeight: INLINE_MATRIX_CELL_HEIGHT,
+        })
+      default:
+        return {};
+    }
+  }
+
   render () {
     const { selected } = this.state;
+    const { mode, context } = this.props
+    const renderProps = this.getRenderProps();
     console.log('this.props: ', this.props);
+    console.log('this.state: ', this.state);
+    console.log('renderProps: ', renderProps);
     return (
         <>
-          <Container fluid>
+          <Container>
           {
-            GRID_STRUCTURE.map(row => {
+            this.populateGridContents().map(row => {
               return (
                 <Row
-                  key={row[0].id}
+                  key={`${context}-${row[0].id}`}
                 >
                   {
                     row.map(cell => {
-                      if (selected.includes(cell.id)) {
-                        cell.label = "selected"
+                      // if (selected.includes(cell.id)) {
+                      //   cell.selected = true;
+                      // }
+
+                      // TODO move this
+                      const bgColor = () => {
+                        switch(mode) {
+                          case 'inline': {
+                            switch(cell.type) {
+                              case 'header': {
+                                return styles[cell.category][cell.type].backgroundColor;
+                              }
+                              case 'body': {
+                                return selected.includes(cell.id) ? 'LawnGreen' : 'rgb(235, 235, 235)'
+                              }
+                            }
+                          }
+                          case 'display': {
+                            return styles[cell.category][cell.type].backgroundColor;
+                          }
+                          case 'form': {
+                            return styles[cell.category][cell.type].backgroundColor;
+                          }
+                          default: {
+                            return null;
+                          }
+
+                        }
                       }
                       return (
-                        <Col xs
-                          key={cell.id}
+                        <Col
+                          key={`${context}-${cell.id}`}
                           style={{
-                            // color: 'white',
                             border: 'solid 1px black',
-                            height: 100,
+                            height: renderProps.cellHeight,
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            ...styles[cell.category][cell.type],
+                            // alignContent: 'stretch',
+                            backgroundColor: bgColor()
                           }}
                           onClick={() => { this.handleClick(cell.id) }}
                         >
                           <MatrixCell
-                            key={cell.id}
+                            key={`${context}-${cell.id}-matrix-cell`}
+                            mode={mode}
+                            selected={selected.includes(cell.id)}
                           >
                             {cell}
                           </MatrixCell>

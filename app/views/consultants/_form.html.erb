@@ -1,4 +1,4 @@
-<%= form_with(model: consultant, local: true) do |form| %>
+<%= bootstrap_form_with(model: consultant, local: true) do |form| %>
   <% if consultant.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(consultant.errors.count, "error") %> prohibited this consultant from being saved:</h2>
@@ -12,24 +12,26 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
 
   <div class="field">
-    <%= form.label :email %>
     <%= form.text_field :email %>
   </div>
 
   <div class="field">
-    <%= form.label :notes %>
     <%= form.text_area :notes %>
   </div>
 
   <div class="field">
-    <%= form.label :talents %>
-    <%= form.text_area :talents %>
+    <%= form.text_area :clients %>
   </div>
+
+  <div class="field">
+    <%= form.hidden_field :talents, label: "Talents" %>
+  </div>
+
+  <%= react_component("TalentMatrix", { mode: 'form', talent_input_id: 'consultant_talents' }) %>
 
   <div class="actions">
     <%= form.submit %>

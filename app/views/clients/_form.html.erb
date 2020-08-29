@@ -24,10 +24,14 @@
   </div>
 
   <div class="field">
+    <%= form.select :consultant_id, Consultant.all.collect { |c| [c.name, c.id] }, { include_blank: true } %>
+  </div>
+
+  <div class="field">
     <%= form.hidden_field :talents, label: "Requirements" %>
   </div>
 
-  <%= react_component("TalentMatrix", { mode: 'form', talent_input_id: 'client_talents' }) %>
+  <%= react_component("TalentMatrix", { mode: 'form', talent_input_id: 'client_talents', selected: client&.talents, context: 'new-client' }) %>
 
   <div class="actions">
     <%= form.submit %>

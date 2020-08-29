@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: "home#index"
 
+  match '/overview', to: 'talent_matrix#overview', via: 'get', as: :overview
+
   match '/home', to: 'home#index', via: 'get', as: :home
 
 end

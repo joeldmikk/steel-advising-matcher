@@ -1,30 +1,50 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Container, Nav } from 'react-bootstrap'
+import { Container, Tabs, Tab } from 'react-bootstrap'
 import TalentMatrix from './TalentMatrix'
 
 class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {key: 'overview'}
+  }
+
+  componentDidMount = () => {
+    fetch("http://localhost:3000/overview")
+      .then((response) => { return response.json()})
+      .then((data) => {
+        console.log(data)
+        this.setState({overview: data})
+      })
+  }
+  
   render () {
+    console.log("Home.props: ", this.props);
+    console.log("Home.state: ", this.state);
     return (
       <React.Fragment>
         <Container>
-          <Nav variant="pills" defaultActiveKey="/home">
-            <Nav.Item>
-              <Nav.Link eventKey="overview">Overview</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="client-view">Client View</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="consultant-view">Consultant View</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="disabled" disabled>
-                Disabled
-              </Nav.Link>
-            </Nav.Item>
-          </Nav>
-          <TalentMatrix />
+          <Tabs
+            id="controlled-tab-example"
+            activeKey={this.state.key}
+            onSelect={(k) => this.setState({key: k})}
+          >
+            <Tab eventKey="overview" title="Overview">
+              <TalentMatrix
+                mode="display"
+                context="overview"
+                selected="[]"
+                contents={this.state.overview}
+              />
+              OVERVIEW
+            </Tab>
+            <Tab eventKey="client-view" title="Client Overview">
+              CLIENT OVERVIEW
+            </Tab>
+            <Tab eventKey="consultant-view" title="Consultant Overview">
+              CONSULTANT OVERVIEW
+            </Tab>
+          </Tabs>
         </Container>
       </React.Fragment>
     );
