@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { Container, Row, Col } from 'react-bootstrap';
 import PropTypes from "prop-types";
 import { GRID_STRUCTURE } from "../constants.js";
@@ -49,29 +49,43 @@ const styles = {
 const INLINE_MATRIX_CELL_HEIGHT = 20;
 const DISPLAY_MATRIX_CELL_HEIGHT = 100;
 const FORM_MATRIX_CELL_HEIGHT = 100;
-// const 
+
 
 class TalentMatrix extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       selected: JSON.parse(this.props.selected) || [],
-      contents: {},
+      contents: this.props.contents,
+      grid: GRID_STRUCTURE,
     }
     this.handleClick = this.handleClick.bind(this);
   }
 
-  populateGridContents = () => {
-    if (this.props.content) {
-      return GRID_STRUCTURE.map((cell) => {
-        const nextCell = Object.assign({}, cell);
-        console.log("nextCell: ", nextCell);
-        this.props.content[nextCell.id]
-        nextCell.content = this.props.content[nextCell.id]
-        return nextCell;
-      })
+  componentDidUpdate(prevProps) {
+    if (this.props.contents != prevProps.contents) {
+      this.populateGridContents();
     }
-    return GRID_STRUCTURE;
+  }
+
+  populateGridContents = () => {
+    const {contents} = this.props;
+    const {selected} = this.state;
+    if(!contents) {
+      return;
+    }
+    const nextGrid = Object.assign([], GRID_STRUCTURE)
+    nextGrid.forEach((row) => {
+      row.forEach((cell) => {
+        if (contents[cell.id]) {
+          cell.contents = contents[cell.id] || undefined;
+        }
+        if (selected.includes(cell.id)) {
+          cell.selected = true
+        }
+      })
+    })
+    this.setState({grid: nextGrid});
   }
 
   handleClick(val) {
@@ -108,27 +122,22 @@ class TalentMatrix extends React.Component {
     }
   }
 
+
   render () {
-    const { selected } = this.state;
+    const { selected, grid } = this.state;
     const { mode, context } = this.props
     const renderProps = this.getRenderProps();
-    console.log('this.props: ', this.props);
-    console.log('this.state: ', this.state);
-    console.log('renderProps: ', renderProps);
     return (
         <>
           <Container>
           {
-            this.populateGridContents().map(row => {
+            grid.map(row => {
               return (
                 <Row
                   key={`${context}-${row[0].id}`}
                 >
                   {
                     row.map(cell => {
-                      // if (selected.includes(cell.id)) {
-                      //   cell.selected = true;
-                      // }
 
                       // TODO move this
                       const bgColor = () => {
@@ -165,7 +174,8 @@ class TalentMatrix extends React.Component {
                             alignItems: 'center',
                             justifyContent: 'center',
                             // alignContent: 'stretch',
-                            backgroundColor: bgColor()
+                            backgroundColor: bgColor(),
+                            flexBasis: 0,
                           }}
                           onClick={() => { this.handleClick(cell.id) }}
                         >

@@ -13,7 +13,6 @@ class Home extends React.Component {
     fetch("http://localhost:3000/overview")
       .then((response) => { return response.json()})
       .then((data) => {
-        console.log(data)
         this.setState({overview: data})
       })
   }

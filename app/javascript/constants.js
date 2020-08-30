@@ -4,49 +4,65 @@ export const GRID_STRUCTURE = [ // container
       id: 'PSYCHOLOGY',
       label: "Psychology",
       type: 'header',
-      category: 'PSYCHOLOGY'
+      category: 'PSYCHOLOGY',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'SUBSTANCE',
       label: "Substance Use/Misuse",
       type: 'header',
-      category: 'PSYCHOLOGY'
+      category: 'PSYCHOLOGY',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'ADHD',
       label: 'ADHD/OCD',
       type: 'header',
-      category: 'PSYCHOLOGY'
+      category: 'PSYCHOLOGY',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'PURE_EF',
       label: 'Pure Exec. Functions',
       type: 'header',
-      category: 'PSYCHOLOGY'
+      category: 'PSYCHOLOGY',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'NEW_PROF',
       label: 'New Professionals',
       type: 'header',
-      category: 'FLOURISHING'
+      category: 'FLOURISHING',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'CAREER_TRANS',
       label: 'Transitioning Careers',
       type: 'header',
-      category: 'FLOURISHING'
+      category: 'FLOURISHING',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'BURNOUT',
       label: 'Managing Burnout',
       type: 'header',
-      category: 'FLOURISHING'
+      category: 'FLOURISHING',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'FLOURISHING',
       label: 'Flourishing',
       type: 'header',
-      category: 'FLOURISHING'
+      category: 'FLOURISHING',
+      contents: undefined,
+      selected:false,
     }
   ], // row 1
   [
@@ -54,47 +70,63 @@ export const GRID_STRUCTURE = [ // container
       id: 'HIGH_T',
       label: 'High Trauma',
       type: 'header',
-      category: 'PSYCHOLOGY'
+      category: 'PSYCHOLOGY',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'SUBSTANCE_HIGH',
       label: '',
       type: 'body',
-      category: 'PSYCHOLOGY'
+      category: 'PSYCHOLOGY',
+      contents: undefined,
+      selected:false,
     },{
       id: 'ADHD_HIGH',
       label: '',
       type: 'body',
-      category: 'PSYCHOLOGY'
+      category: 'PSYCHOLOGY',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'PURE_EF_HIGH',
       label: '',
       type: 'body',
-      category: 'PSYCHOLOGY'
+      category: 'PSYCHOLOGY',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'NEW_PROF_HIGH',
       label: '',
       type: 'body',
-      category: 'FLOURISHING'
+      category: 'FLOURISHING',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'CAREER_TRANS_HIGH',
       label: '',
       type: 'body',
-      category: 'FLOURISHING'
+      category: 'FLOURISHING',
+      contents: undefined,
+      selected:false,
     },{
       id: 'BURNOUT_HIGH',
       label: '',
       type: 'body',
-      category: 'FLOURISHING'
+      category: 'FLOURISHING',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'HIGH_PROF',
       label: 'High Profile',
       type: 'header',
-      category: 'FLOURISHING'
+      category: 'FLOURISHING',
+      contents: undefined,
+      selected:false,
     }
   ], // row 2
   [
@@ -102,47 +134,65 @@ export const GRID_STRUCTURE = [ // container
       id: 'MEDIUM_T',
       label: 'Medium Trauma',
       type: 'header',
-      category: 'PSYCHOLOGY'
+      category: 'PSYCHOLOGY',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'SUBSTANCE_MED',
       label: '',
       type: 'body',
-      category: 'PSYCHOLOGY'
-    },{
+      category: 'PSYCHOLOGY',
+      contents: undefined,
+      selected:false,
+    },
+    {
       id: 'ADHD_MED',
       label: '',
       type: 'body',
-      category: 'PSYCHOLOGY'
+      category: 'PSYCHOLOGY',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'PURE_EF_MED',
       label: '',
       type: 'body',
-      category: 'PSYCHOLOGY'
+      category: 'PSYCHOLOGY',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'NEW_PROF_MED',
       label: '',
       type: 'body',
-      category: 'FLOURISHING'
+      category: 'FLOURISHING',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'CAREER_TRANS_MED',
       label: '',
       type: 'body',
-      category: 'FLOURISHING'
-    },{
+      category: 'FLOURISHING',
+      contents: undefined,
+      selected:false,
+    },
+    {
       id: 'BURNOUT_MED',
       label: '',
       type: 'body',
-      category: 'FLOURISHING'
+      category: 'FLOURISHING',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'MED_PROF',
       label: 'Medium Profile',
       type: 'header',
-      category: 'FLOURISHING'
+      category: 'FLOURISHING',
+      contents: undefined,
+      selected:false,
     }
   ], // row 3
   [
@@ -150,47 +200,64 @@ export const GRID_STRUCTURE = [ // container
       id: 'LOW_T',
       label: 'Low Trauma',
       type: 'header',
-      category: 'PSYCHOLOGY'
+      category: 'PSYCHOLOGY',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'SUBSTANCE_LOW',
       label: '',
       type: 'body',
-      category: 'PSYCHOLOGY'
+      category: 'PSYCHOLOGY',
+      contents: undefined,
+      selected:false,
     },{
       id: 'ADHD_LOW',
       label: '',
       type: 'body',
-      category: 'PSYCHOLOGY'
+      category: 'PSYCHOLOGY',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'PURE_EF_LOW',
       label: '',
       type: 'body',
-      category: 'PSYCHOLOGY'
+      category: 'PSYCHOLOGY',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'NEW_PROF_LOW',
       label: '',
       type: 'body',
-      category: 'FLOURISHING'
+      category: 'FLOURISHING',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'CAREER_TRANS_LOW',
       label: '',
       type: 'body',
-      category: 'FLOURISHING'
-    },{
+      category: 'FLOURISHING',
+      contents: undefined,
+      selected:false,
+    },
+    {
       id: 'BURNOUT_LOW',
       label: '',
       type: 'body',
-      category: 'FLOURISHING'
+      category: 'FLOURISHING',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'LOW_PROF',
       label: 'Low Profile',
       type: 'header',
-      category: 'FLOURISHING'
+      category: 'FLOURISHING',
+      contents: undefined,
+      selected:false,
     }
   ], // row 4
   [
@@ -198,49 +265,65 @@ export const GRID_STRUCTURE = [ // container
       id: 'COLLABORATOR',
       label: 'Collaborator',
       type: 'header',
-      category: 'EDUCATION'
+      category: 'EDUCATION',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'COLLAB_EF',
       label: '',
       type: 'body',
-      category: 'EDUCATION'
+      category: 'EDUCATION',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'COLLAB_SOC_EMO',
       label: '',
       type: 'body',
-      category: 'EDUCATION'
+      category: 'EDUCATION',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'COLLAB_DIVERSITY',
       label: '',
       type: 'body',
-      category: 'EDUCATION'
+      category: 'EDUCATION',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'SCHOOL_GROUP_TEAMS',
       label: '',
       type: 'body',
-      category: 'LEADERSHIP'
+      category: 'LEADERSHIP',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'HIGH_PRESSURE_GROUP_TEAMS',
       label: '',
       type: 'body',
-      category: 'LEADERSHIP'
+      category: 'LEADERSHIP',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'EXECUTIVE_COACHING_GROUP_TEAMS',
       label: '',
       type: 'body',
-      category: 'LEADERSHIP'
+      category: 'LEADERSHIP',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'GROUP_TEAMS',
       label: 'Group Dynamics and Teams',
       type: 'header',
-      category: 'LEADERSHIP'
+      category: 'LEADERSHIP',
+      contents: undefined,
+      selected:false,
     }
   ], // row 5
   [
@@ -248,48 +331,65 @@ export const GRID_STRUCTURE = [ // container
       id: 'CO_FAC',
       label: 'Co Facilitator',
       type: 'header',
-      category: 'EDUCATION'
+      category: 'EDUCATION',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'CO_FAC_EF',
       label: '',
       type: 'body',
-      category: 'EDUCATION'
-    },{
+      category: 'EDUCATION',
+      contents: undefined,
+      selected:false,
+    },
+    {
       id: 'CO_FAC_SOC_EMO',
       label: '',
       type: 'body',
-      category: 'EDUCATION'
+      category: 'EDUCATION',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'CO_FAC_DIVERSITY',
       label: '',
       type: 'body',
-      category: 'EDUCATION'
+      category: 'EDUCATION',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'SCHOOL_PROJ_MGMT',
       label: '',
       type: 'body',
-      category: 'LEADERSHIP'
+      category: 'LEADERSHIP',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'HIGH_PRESSURE_PROJ_MGMT',
       label: '',
       type: 'body',
-      category: 'LEADERSHIP'
+      category: 'LEADERSHIP',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'EXECUTIVE_COACHING_PROJ_MGMT',
       label: '',
       type: 'body',
-      category: 'LEADERSHIP'
+      category: 'LEADERSHIP',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'PROJ_MGMT',
       label: 'Project Management',
       type: 'header',
-      category: 'LEADERSHIP'
+      category: 'LEADERSHIP',
+      contents: undefined,
+      selected:false,
     }
   ], // row 6
   [
@@ -297,48 +397,65 @@ export const GRID_STRUCTURE = [ // container
       id: 'LEAD_DEV',
       label: 'Lead Developer',
       type: 'header',
-      category: 'EDUCATION'
+      category: 'EDUCATION',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'LEAD_DEV_EF',
       label: '',
       type: 'body',
-      category: 'EDUCATION'
-    },{
+      category: 'EDUCATION',
+      contents: undefined,
+      selected:false,
+    },
+    {
       id: 'LEAD_DEV_SOC_EMO',
       label: '',
       type: 'body',
-      category: 'EDUCATION'
+      category: 'EDUCATION',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'LEAD_DEV_DIVERSITY',
       label: '',
       type: 'body',
-      category: 'EDUCATION'
+      category: 'EDUCATION',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'SCHOOL_CEO',
       label: '',
       type: 'body',
-      category: 'LEADERSHIP'
+      category: 'LEADERSHIP',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'HIGH_PRESSURE_CEO',
       label: '',
       type: 'body',
-      category: 'LEADERSHIP'
+      category: 'LEADERSHIP',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'EXECUTIVE_COACHING_PROJ_MGMT',
       label: '',
       type: 'body',
-      category: 'LEADERSHIP'
+      category: 'LEADERSHIP',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'CEO',
       label: 'Entrepreneurs and CEOs',
       type: 'header',
-      category: 'LEADERSHIP'
+      category: 'LEADERSHIP',
+      contents: undefined,
+      selected:false,
     }
   ], // row 7
   [
@@ -346,47 +463,65 @@ export const GRID_STRUCTURE = [ // container
       id: 'EDUCATION',
       label: 'Education',
       type: 'header',
-      category: 'EDUCATION'
+      category: 'EDUCATION',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'EF',
       label: 'Primary: Executive Functioning',
       type: 'header',
-      category: 'EDUCATION'
-    },{
+      category: 'EDUCATION',
+      contents: undefined,
+      selected:false,
+    },
+    {
       id: 'SOC_EMO',
       label: 'Primary: Social Emotional Learning',
       type: 'header',
-      category: 'EDUCATION'
+      category: 'EDUCATION',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'DIVERSITY',
       label: 'Primary: Diversity and Inclusion',
       type: 'header',
-      category: 'EDUCATION'
+      category: 'EDUCATION',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'SCHOOL_LEADERS',
       label: 'School Leaders',
       type: 'header',
-      category: 'LEADERSHIP'
+      category: 'LEADERSHIP',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'HIGH_PRESSURE',
       label: 'High Pressure Fields',
       type: 'header',
-      category: 'LEADERSHIP'
-    },{
+      category: 'LEADERSHIP',
+      contents: undefined,
+      selected:false,
+    },
+    {
       id: 'EXECUTIVE_COACHING',
       label: 'Executive Coaching',
       type: 'header',
-      category: 'LEADERSHIP'
+      category: 'LEADERSHIP',
+      contents: undefined,
+      selected:false,
     },
     {
       id: 'LEADERSHIP',
       label: 'Leadership',
       type: 'header',
-      category: 'LEADERSHIP'
+      category: 'LEADERSHIP',
+      contents: undefined,
+      selected:false,
     }
   ], // row 8
 ]

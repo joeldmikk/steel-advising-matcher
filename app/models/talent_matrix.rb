@@ -3,29 +3,27 @@ class TalentMatrix
     def self.overview
       clients = Client.all
       consultants = Consultant.all
-      contents = {}
+      raw_talents = clients.pluck(:talents) << consultants.pluck(:talents)
+      talents = []
+      raw_talents.flatten.each do |t|
+        talents << JSON.parse(t)
+        talents.flatten!
+      end
+
+      contents = Hash[talents.map {|t| [t, {clients: [], consultants: []}]}]
 
       clients.each do |client|
         JSON.parse(client.talents).each do |talent|
-          if !contents.key?(talent)
-            contents[talent] = { clients: [{id: client.id, name: client.name}] }
-          else
-            contents[talent][:clients] |= [{id: client.id, name: client.name}]
-          end
+          contents[talent][:clients] |= [{id: client.id, name: client.name}]
         end
       end
 
       consultants.each do |consultant|
         JSON.parse(consultant.talents).each do |talent|
-          if !contents.key?(talent)
-            contents[talent] = { consultants: [{id: consultant.id, name: consultant.name}] }
-          else
-            contents[talent][:consultants] |= [{id: consultant.id, name: consultant.name}]
-          end
+          contents[talent][:consultants] |= [{id: consultant.id, name: consultant.name}]
         end
       end
 
-      puts "\n\nreturning contents: #{contents}\n\n"
       contents
     end
 
