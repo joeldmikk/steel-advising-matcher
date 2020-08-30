@@ -6,20 +6,30 @@ import TalentMatrix from './TalentMatrix'
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {key: 'overview'}
+    this.state = {key: 'overview', overview: {}, clientsOverview: {}, consultantsOverview: {}}
   }
 
   componentDidMount = () => {
     fetch("http://localhost:3000/overview")
       .then((response) => { return response.json()})
       .then((data) => {
-        this.setState({overview: data})
+        this.setState({overview: data});
+      })
+    fetch("http://localhost:3000/clients_overview")
+      .then((response) => { return response.json()})
+      .then((data) => {
+        console.log("clientsOverview: ", data);
+        this.setState({clientsOverivew: data});
+      })
+    fetch("http://localhost:3000/consultants_overview")
+      .then((response) => {return response.json()})
+      .then((data) => {
+        console.log("consultantsOverview: ", data);
+        this.setState({consultantsOverview: data});
       })
   }
   
   render () {
-    console.log("Home.props: ", this.props);
-    console.log("Home.state: ", this.state);
     return (
       <React.Fragment>
         <Container>
@@ -38,10 +48,20 @@ class Home extends React.Component {
               OVERVIEW
             </Tab>
             <Tab eventKey="client-view" title="Client Overview">
-              CLIENT OVERVIEW
+              <TalentMatrix
+                mode="display"
+                context="overview"
+                selected="[]"
+                contents={this.state.clientsOverview}
+              />
             </Tab>
             <Tab eventKey="consultant-view" title="Consultant Overview">
-              CONSULTANT OVERVIEW
+              <TalentMatrix
+                mode="display"
+                context="overview"
+                selected="[]"
+                contents={this.state.consultantsOverview}
+              />
             </Tab>
           </Tabs>
         </Container>

@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   match '/overview', to: 'talent_matrix#overview', via: 'get', as: :overview
+  match '/clients_overview', to: 'talent_matrix#clients_overview', via: 'get', as: :clients_overview
+  match '/consultants_overview', to: 'talent_matrix#consultants_overview', via: 'get', as: :consultants_overview
 
   match '/home', to: 'home#index', via: 'get', as: :home
 
