@@ -13,6 +13,7 @@ class Home extends React.Component {
     fetch("http://localhost:3000/overview")
       .then((response) => { return response.json()})
       .then((data) => {
+        console.log("overview: ", data);
         this.setState({overview: data});
       })
     fetch("http://localhost:3000/clients_overview")
@@ -42,7 +43,7 @@ class Home extends React.Component {
               <TalentMatrix
                 mode="display"
                 context="overview"
-                selected="[]"
+                selected=""
                 contents={this.state.overview}
               />
               OVERVIEW
@@ -51,7 +52,7 @@ class Home extends React.Component {
               <TalentMatrix
                 mode="display"
                 context="overview"
-                selected="[]"
+                selected=""
                 contents={this.state.clientsOverview}
               />
             </Tab>
@@ -59,7 +60,7 @@ class Home extends React.Component {
               <TalentMatrix
                 mode="display"
                 context="overview"
-                selected="[]"
+                selected=""
                 contents={this.state.consultantsOverview}
               />
             </Tab>

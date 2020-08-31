@@ -10,6 +10,7 @@ export const MatrixCell = (props) => {
 
 
   const renderContents = () => {
+    console.log(props);
     switch(mode) {
       case 'inline': {
         return null;

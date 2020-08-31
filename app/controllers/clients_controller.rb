@@ -15,10 +15,13 @@ class ClientsController < ApplicationController
   # GET /clients/new
   def new
     @client = Client.new
+    @suggested_consultants = Consultant.all
   end
 
   # GET /clients/1/edit
   def edit
+    @suggested_consultants = @client.get_suggested_consultants
+    pp @suggested_consultants
   end
 
   # POST /clients

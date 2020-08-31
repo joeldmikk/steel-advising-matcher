@@ -24,7 +24,7 @@
   </div>
 
   <div class="field">
-    <%= form.select :consultant_id, Consultant.all.collect { |c| [c.name, c.id] }, { include_blank: true } %>
+    <%= form.select :consultant_id, @suggested_consultants.collect { |c| [c.name, c.id] }, { include_blank: true } %>
   </div>
 
   <div class="field">

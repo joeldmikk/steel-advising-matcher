@@ -55,7 +55,7 @@ class TalentMatrix extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: JSON.parse(this.props.selected) || [],
+      selected: this.props.selected.split(',') || [],
       contents: this.props.contents,
       grid: GRID_STRUCTURE,
     }
@@ -98,8 +98,34 @@ class TalentMatrix extends React.Component {
         nextSelected = [...nextSelected, val];
       }
       this.setState({selected: nextSelected})
-      const jsonNextSelected = JSON.stringify(nextSelected);
-      document.getElementById(this.props.talent_input_id).value=jsonNextSelected
+      // const jsonNextSelected = JSON.stringify(nextSelected);
+      document.getElementById(this.props.talent_input_id).value=[nextSelected]
+    }
+  }
+
+  // TODO move this
+  bgColor = (cell) => {
+    switch(this.props.mode) {
+      case 'inline': {
+        switch(cell.type) {
+          case 'header': {
+            return styles[cell.category][cell.type].backgroundColor;
+          }
+          case 'body': {
+            return selected.includes(cell.id) ? 'LawnGreen' : 'rgb(235, 235, 235)'
+          }
+        }
+      }
+      case 'display': {
+        return styles[cell.category][cell.type].backgroundColor;
+      }
+      case 'form': {
+        return styles[cell.category][cell.type].backgroundColor;
+      }
+      default: {
+        return null;
+      }
+
     }
   }
 
@@ -125,6 +151,7 @@ class TalentMatrix extends React.Component {
 
   render () {
     const { selected, grid } = this.state;
+    console.log('selected: ', selected);
     const { mode, context } = this.props
     const renderProps = this.getRenderProps();
     return (
@@ -139,31 +166,7 @@ class TalentMatrix extends React.Component {
                   {
                     row.map(cell => {
 
-                      // TODO move this
-                      const bgColor = () => {
-                        switch(mode) {
-                          case 'inline': {
-                            switch(cell.type) {
-                              case 'header': {
-                                return styles[cell.category][cell.type].backgroundColor;
-                              }
-                              case 'body': {
-                                return selected.includes(cell.id) ? 'LawnGreen' : 'rgb(235, 235, 235)'
-                              }
-                            }
-                          }
-                          case 'display': {
-                            return styles[cell.category][cell.type].backgroundColor;
-                          }
-                          case 'form': {
-                            return styles[cell.category][cell.type].backgroundColor;
-                          }
-                          default: {
-                            return null;
-                          }
-
-                        }
-                      }
+                      
                       return (
                         <Col
                           key={`${context}-${cell.id}`}
@@ -174,7 +177,7 @@ class TalentMatrix extends React.Component {
                             alignItems: 'center',
                             justifyContent: 'center',
                             // alignContent: 'stretch',
-                            backgroundColor: bgColor(),
+                            backgroundColor: this.bgColor(cell),
                             flexBasis: 0,
                           }}
                           onClick={() => { this.handleClick(cell.id) }}
@@ -201,54 +204,7 @@ class TalentMatrix extends React.Component {
 }
 
 
-
-
-  // render () {
-  //   console.log('this.props: ', this.props)
-  //   return (
-  //       <>
-  //         <Container fluid>
-  //         {
-  //           GRID_STRUCTURE.map(row => {
-  //             return (
-  //               <Row
-  //                 key={row[0].id}
-  //               >
-  //                 {
-  //                   row.map(cell => {
-  //                     return (
-  //                       <Col xs
-  //                         key={cell.id}
-  //                         style={{
-  //                           // color: 'white',
-  //                           border: 'solid 1px black',
-  //                           height: 100,
-  //                           display: 'flex',
-  //                           alignItems: 'center',
-  //                           justifyContent: 'center',
-  //                           ...styles[cell.category][cell.type]
-  //                         }}
-  //                         onClick={() => { console.log('clicked: ', cell.id)}}
-  //                       >
-  //                         <MatrixCell
-  //                           key={cell.id}
-  //                         >
-  //                           {cell}
-  //                         </MatrixCell>
-  //                       </Col>
-  //                     )
-  //                   })
-  //                 }
-  //               </Row>
-  //             )
-  //           })
-  //         }
-  //       </Container>
-  //       </>
-  //   );
-  // }
-
 TalentMatrix.propTypes = {
-  greeting: PropTypes.string
+  selected: PropTypes.string
 };
 export default TalentMatrix

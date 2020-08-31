@@ -19,38 +19,44 @@ class TalentMatrix
 
     def self.clients_overview
       clients = Client.all.select(:id, :name, :talents)
-      raw_talents = clients.map(&:talents)
-      talents = self.format_raw_talents(raw_talents)
+      talents = clients.map(&:talents)
       contents = Hash[talents.map {|t| [t, []]}]
       clients.each do |client|
-        JSON.parse(client.talents).each do |talent|
-          contents[talent] |= [{id: client.id, name: client.name}]
+        client.talents.split(',').each do |talent|
+          payload = {id: client.id, name: client.name}
+          pp payload
+          contents[talent] |= [payload]
         end
       end
+      puts "\n\nCLIENTS:\n\n"
+      pp contents
       contents
     end
 
 
     def self.consultants_overview
       consultants = Consultant.all.select(:id, :name, :talents)
-      raw_talents = consultants.map(&:talents)
-      talents = self.format_raw_talents(raw_talents)
+      talents = consultants.map(&:talents)
+      # talents = self.format_raw_talents(raw_talents)
       contents = Hash[talents.map {|t| [t, []]}]
       consultants.each do |consultant|
-        JSON.parse(consultant.talents).each do |talent|
+        consultant.talents.split(',').each do |talent|
           contents[talent] |= [{id: consultant.id, name: consultant.name}]
         end
       end
       contents
     end
 
-    def self.format_raw_talents(raw_talents)
-      talents = []
-      raw_talents.flatten.each do |t|
-        talents << JSON.parse(t)
-        talents.flatten!
-      end
-      return talents.uniq
-    end
+    # def self.format_raw_talents(raw_talents)
+    #   talents = []
+    #   puts "raw_talents: \n\n"
+    #   pp raw_talents
+    
+    #   raw_talents.flatten.each do |t|
+    #     talents << JSON.parse(t)
+    #     talents.flatten!
+    #   end
+    #   return talents.uniq
+    # end
 
 end
