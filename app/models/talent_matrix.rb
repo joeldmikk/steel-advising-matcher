@@ -9,8 +9,8 @@ class TalentMatrix
       contents = Hash[talents.map {|t| [t, {clients: [], consultants: []}]}]
 
       talents.each do |talent|
-        contents[talent][:clients] |= [clients_overview[talent]] 
-        contents[talent][:consultants] |= [consultants_overview[talent]]
+        contents[talent][:clients] |= [clients_overview[talent]] unless clients_overview[talent].nil?
+        contents[talent][:consultants] |= [consultants_overview[talent]] unless consultants_overview[talent].nil?
       end
 
       contents
