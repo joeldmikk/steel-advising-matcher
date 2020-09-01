@@ -24,6 +24,10 @@
   </div>
 
   <div class="field">
+    <%= form.text_area :referral_source %>
+  </div
+
+  <div class="field">
     <%= form.select :consultant_id, @suggested_consultants.collect { |c| [c.name, c.id] }, { include_blank: true } %>
   </div>
 

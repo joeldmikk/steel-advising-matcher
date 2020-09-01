@@ -51,7 +51,7 @@ class Home extends React.Component {
             <Tab eventKey="client-view" title="Client Overview">
               <TalentMatrix
                 mode="display"
-                context="overview"
+                context="clients-overview"
                 selected=""
                 contents={this.state.clientsOverview}
               />
@@ -59,7 +59,7 @@ class Home extends React.Component {
             <Tab eventKey="consultant-view" title="Consultant Overview">
               <TalentMatrix
                 mode="display"
-                context="overview"
+                context="consultants-overview"
                 selected=""
                 contents={this.state.consultantsOverview}
               />

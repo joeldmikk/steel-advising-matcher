@@ -1,5 +1,6 @@
-import React, {useState} from "react"
+import React, {useEffect} from "react"
 // import PropTypes from "prop-types";
+import { MatrixCellDisplay } from './MatrixCellDisplay';
 
 
 export const MatrixCell = (props) => {
@@ -7,10 +8,16 @@ export const MatrixCell = (props) => {
   const mode = props.mode;
   const selected = props.selected;
   const contents = item.contents || {};
+  // const context = props.context;
+
+  // useEffect((nextProps) => {
+  //   // console.log('nextProps: ', nextProps);
+  //   // console.log('newprops');
+  // }), [props]
 
 
   const renderContents = () => {
-    console.log(props);
+    // console.log(props);
     switch(mode) {
       case 'inline': {
         return null;
@@ -19,32 +26,9 @@ export const MatrixCell = (props) => {
         return selected ? String.fromCharCode(10003) : item.label;
       }
       case 'display': {
-        if (contents) {
-          let c = undefined;
-          if (contents.clients && contents.clients.length) {
-            console.log('contents found: ', contents);
-            console.log('for cell: ', item);
-            return (
-              <div style={{fontSize: 'small', color: 'black'}}>
-                  {
-                  contents.clients && contents.clients.map((client) => {
-                    return client.name
-                  }).join(', ')
-                }
-              </div>
-            );
-          }
-          if (contents.consultants && contents.consultants.length) {
-            return (
-              <div style={{fontSize: 'small', color: 'gray'}}>
-                {
-                  contents.consultants && contents.consultants.map((consultant) => {
-                    return consultant.name
-                  }).join(', ')
-                }
-              </div>
-            );
-          }
+        if (Object.keys(contents).length) {
+          const {clients, consultants, context} = contents;
+          return <MatrixCellDisplay clients={clients} consultants={consultants} context={props.context} />
         }
       }
       default: {
@@ -56,8 +40,9 @@ export const MatrixCell = (props) => {
   return (
     <div
       style={{
-        display: 'flex',
-        alignItems: 'center',
+        // display: 'flex',
+        // flexBasis: 0,
+        // alignItems: 'center',
         justifyContent: 'center',
         color: 'white',
       }}

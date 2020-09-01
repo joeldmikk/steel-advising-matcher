@@ -11,4 +11,5 @@ class Client < ApplicationRecord
     consultants = Consultant.where("talents ~* ?", "(#{talents})")
     consultants.length > 0 ? consultants : Consultant.all
   end
+
 end

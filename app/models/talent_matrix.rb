@@ -7,10 +7,12 @@ class TalentMatrix
       talents.uniq!
 
       contents = Hash[talents.map {|t| [t, {clients: [], consultants: []}]}]
+      puts "CONTENTS: "
+      pp contents
 
       talents.each do |talent|
-        contents[talent][:clients] |= [clients_overview[talent]] unless clients_overview[talent].nil?
-        contents[talent][:consultants] |= [consultants_overview[talent]] unless consultants_overview[talent].nil?
+        contents[talent][:clients] |= [clients_overview[talent]].flatten unless clients_overview[talent].nil?
+        contents[talent][:consultants] |= [consultants_overview[talent]].flatten unless consultants_overview[talent].nil?
       end
 
       contents
@@ -19,25 +21,20 @@ class TalentMatrix
 
     def self.clients_overview
       clients = Client.all.select(:id, :name, :talents)
-      talents = clients.map(&:talents)
+      talents = clients.map { |t| t.talents.split(',')}.flatten
       contents = Hash[talents.map {|t| [t, []]}]
       clients.each do |client|
         client.talents.split(',').each do |talent|
-          payload = {id: client.id, name: client.name}
-          pp payload
-          contents[talent] |= [payload]
+          contents[talent] |= [{id: client.id, name: client.name}]
         end
       end
-      puts "\n\nCLIENTS:\n\n"
-      pp contents
       contents
     end
 
 
     def self.consultants_overview
       consultants = Consultant.all.select(:id, :name, :talents)
-      talents = consultants.map(&:talents)
-      # talents = self.format_raw_talents(raw_talents)
+      talents = consultants.map { |t| t.talents.split(',')}.flatten
       contents = Hash[talents.map {|t| [t, []]}]
       consultants.each do |consultant|
         consultant.talents.split(',').each do |talent|
@@ -46,17 +43,5 @@ class TalentMatrix
       end
       contents
     end
-
-    # def self.format_raw_talents(raw_talents)
-    #   talents = []
-    #   puts "raw_talents: \n\n"
-    #   pp raw_talents
-    
-    #   raw_talents.flatten.each do |t|
-    #     talents << JSON.parse(t)
-    #     talents.flatten!
-    #   end
-    #   return talents.uniq
-    # end
 
 end

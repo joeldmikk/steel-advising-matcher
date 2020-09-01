@@ -112,7 +112,7 @@ class TalentMatrix extends React.Component {
             return styles[cell.category][cell.type].backgroundColor;
           }
           case 'body': {
-            return selected.includes(cell.id) ? 'LawnGreen' : 'rgb(235, 235, 235)'
+            return this.state.selected.includes(cell.id) ? 'LawnGreen' : 'rgb(235, 235, 235)'
           }
         }
       }
@@ -151,7 +151,7 @@ class TalentMatrix extends React.Component {
 
   render () {
     const { selected, grid } = this.state;
-    console.log('selected: ', selected);
+    // console.log('selected: ', selected);
     const { mode, context } = this.props
     const renderProps = this.getRenderProps();
     return (
@@ -186,6 +186,7 @@ class TalentMatrix extends React.Component {
                             key={`${context}-${cell.id}-matrix-cell`}
                             mode={mode}
                             selected={selected.includes(cell.id)}
+                            context={this.props.context}
                           >
                             {cell}
                           </MatrixCell>
