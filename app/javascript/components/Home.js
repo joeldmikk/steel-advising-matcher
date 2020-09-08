@@ -6,21 +6,21 @@ import TalentMatrix from './TalentMatrix'
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {key: 'overview', overview: {}, clientsOverview: {}, consultantsOverview: {}}
+    this.state = {key: 'overview', overview: {}, clientsOverview: {}, consultantsOverview: {} }
   }
 
   componentDidMount = () => {
-    fetch("http://localhost:3000/overview")
+    fetch(this.props.overviewUrl)
       .then((response) => { return response.json()})
       .then((data) => {
         this.setState({overview: data});
       })
-    fetch("http://localhost:3000/clients_overview")
+    fetch(this.props.clientOverviewUrl)
       .then((response) => { return response.json()})
       .then((data) => {
         this.setState({clientsOverivew: data});
       })
-    fetch("http://localhost:3000/consultants_overview")
+    fetch(this.props.consultantOverviewUrl)
       .then((response) => {return response.json()})
       .then((data) => {
         this.setState({consultantsOverview: data});

@@ -1,6 +1,8 @@
 <% if current_user %>
-  <%= react_component("Home") %>
-<% else %>
-  Please log in to continue.
-  <%#= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path, class: 'btn btn-primary' %>
+  <%= react_component("Home", {
+    overviewUrl: overview_path,
+    clientOverviewUrl: clients_overview_path,
+    consultantOverviewUrl: consultants_overview_path
+    }) 
+  %>
 <% end %>
