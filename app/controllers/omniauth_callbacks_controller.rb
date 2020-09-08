@@ -3,7 +3,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def google_oauth2
     auth = request.env["omniauth.auth"]
-    if ["Chelsey.Saunders@steeladvising.com", "Anna.LevyWarren@steeladvising.com", "mexicojoel@gmail.com"].include? auth["info"]["email"]
+
+    if ENV['EMAIL_ALLOW_LIST'].include? auth["info"]["email"].downcase
       user = User.where(provider: auth["provider"], uid: auth["uid"])
             .first_or_initialize(email: auth["info"]["email"])
       user.name ||= auth["info"]["name"]
