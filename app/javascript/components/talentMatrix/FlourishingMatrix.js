@@ -14,7 +14,6 @@ const bgColor = {
 }
 
 export const FlourishingMatrix = () => {
-  console.log("FLOURISHING_GRID: ", FLOURISHING_GRID);
   return(
     <Container>
       {

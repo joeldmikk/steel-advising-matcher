@@ -7,8 +7,6 @@ class TalentMatrix
       talents.uniq!
 
       contents = Hash[talents.map {|t| [t, {clients: [], consultants: []}]}]
-      puts "CONTENTS: "
-      pp contents
 
       talents.each do |talent|
         contents[talent][:clients] |= [clients_overview[talent]].flatten unless clients_overview[talent].nil?

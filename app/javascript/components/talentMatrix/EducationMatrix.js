@@ -14,7 +14,6 @@ const bgColor = {
 }
 
 export const EducationMatrix = () => {
-  console.log("EDUCATION_GRID: ", EDUCATION_GRID);
   return(
     <Container>
       {

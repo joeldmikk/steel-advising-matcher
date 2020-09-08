@@ -13,19 +13,16 @@ class Home extends React.Component {
     fetch("http://localhost:3000/overview")
       .then((response) => { return response.json()})
       .then((data) => {
-        console.log("overview: ", data);
         this.setState({overview: data});
       })
     fetch("http://localhost:3000/clients_overview")
       .then((response) => { return response.json()})
       .then((data) => {
-        console.log("clientsOverview: ", data);
         this.setState({clientsOverivew: data});
       })
     fetch("http://localhost:3000/consultants_overview")
       .then((response) => {return response.json()})
       .then((data) => {
-        console.log("consultantsOverview: ", data);
         this.setState({consultantsOverview: data});
       })
   }
@@ -46,7 +43,6 @@ class Home extends React.Component {
                 selected=""
                 contents={this.state.overview}
               />
-              OVERVIEW
             </Tab>
             <Tab eventKey="client-view" title="Client Overview">
               <TalentMatrix

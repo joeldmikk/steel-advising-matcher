@@ -39,13 +39,6 @@ const styles = {
   }
 };
 
-// const props = {
-//   mode: ['display', 'form', 'inline'],
-//   selected: [],
-//   talent_input_id: '', // only used in form mode
-//   contents: {"CELL_ID": ["Client 1", "Client 2"]}
-// }
-
 const INLINE_MATRIX_CELL_HEIGHT = 20;
 const DISPLAY_MATRIX_CELL_HEIGHT = 100;
 const FORM_MATRIX_CELL_HEIGHT = 100;
@@ -98,7 +91,6 @@ class TalentMatrix extends React.Component {
         nextSelected = [...nextSelected, val];
       }
       this.setState({selected: nextSelected})
-      // const jsonNextSelected = JSON.stringify(nextSelected);
       document.getElementById(this.props.talent_input_id).value=[nextSelected]
     }
   }
@@ -151,7 +143,6 @@ class TalentMatrix extends React.Component {
 
   render () {
     const { selected, grid } = this.state;
-    // console.log('selected: ', selected);
     const { mode, context } = this.props
     const renderProps = this.getRenderProps();
     return (
@@ -176,7 +167,6 @@ class TalentMatrix extends React.Component {
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            // alignContent: 'stretch',
                             backgroundColor: this.bgColor(cell),
                             flexBasis: 0,
                           }}

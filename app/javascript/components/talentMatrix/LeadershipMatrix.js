@@ -12,7 +12,6 @@ const bgColor = {
 }
 
 export const LeadershipMatrix = () => {
-  console.log("LEADERSHIP_GRID: ", LEADERSHIP_GRID);
   return(
     <Container>
       {

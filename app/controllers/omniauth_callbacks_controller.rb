@@ -3,14 +3,16 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def google_oauth2
     auth = request.env["omniauth.auth"]
-    user = User.where(provider: auth["provider"], uid: auth["uid"])
+    if ["Chelsey.Saunders@steeladvising.com", "Anna.LevyWarren@steeladvising.com", "mexicojoel@gmail.com"].include? auth["info"]["email"]
+      user = User.where(provider: auth["provider"], uid: auth["uid"])
             .first_or_initialize(email: auth["info"]["email"])
-    user.name ||= auth["info"]["name"]
-    user.save!
+      user.name ||= auth["info"]["name"]
+      user.save!
 
-    sign_in(:user, user)
+      sign_in(:user, user)
 
-    redirect_to after_sign_in_path_for(user)
+      redirect_to after_sign_in_path_for(user)
+    end
   end
 
   protected

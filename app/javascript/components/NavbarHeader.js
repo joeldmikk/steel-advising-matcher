@@ -4,7 +4,6 @@ import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap'
 class NavbarHeader extends React.Component {
 
   render () {
-    console.log("props: ", this.props);
     const { current_user } = this.props;
     return (
       <React.Fragment>
@@ -24,7 +23,7 @@ class NavbarHeader extends React.Component {
                 <Navbar.Text>
                   Signed in as: <a href="#login">{current_user.name}</a>
                 </Navbar.Text> ||
-                <Button variant="outline-light">Search</Button>
+                <Button variant="outline-light" href="/users/auth/google_oauth2">Log In</Button>
               }
           </Form>
         </Navbar>

@@ -12,7 +12,6 @@ const bgColor = {
 }
 
 export const PsychologyMatrix = () => {
-  console.log("PSYCHOLOGY_GRID: ", PSYCHOLOGY_GRID);
   return(
     <Container>
       {

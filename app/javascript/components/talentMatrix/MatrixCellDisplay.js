@@ -4,9 +4,6 @@ export const MatrixCellDisplay = (props) => {
   const {clients, consultants, context} = props;
 
   const renderContents = () => {
-    // console.log('clients: ', clients);
-    // console.log('consultants: ', consultants);
-    console.log('context: ', context);
     if ((clients && clients.length || consultants && consultants.length) && context == 'overview') {
       return (
         <div>

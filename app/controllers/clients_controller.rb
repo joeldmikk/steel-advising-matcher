@@ -1,4 +1,5 @@
 class ClientsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_client, only: [:show, :edit, :update, :destroy]
 
   # GET /clients
@@ -21,7 +22,6 @@ class ClientsController < ApplicationController
   # GET /clients/1/edit
   def edit
     @suggested_consultants = @client.get_suggested_consultants
-    pp @suggested_consultants
   end
 
   # POST /clients
