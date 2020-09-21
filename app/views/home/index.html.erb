@@ -1,8 +1,6 @@
 <% if current_user %>
   <%= react_component("Home", {
-    overviewUrl: overview_path,
-    clientOverviewUrl: clients_overview_path,
-    consultantOverviewUrl: consultants_overview_path
+    overview: @overview,
     }) 
   %>
 <% end %>

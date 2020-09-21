@@ -46,39 +46,14 @@ const FORM_MATRIX_CELL_HEIGHT = 100;
 
 class TalentMatrix extends React.Component {
   constructor(props) {
+    console.log('constructor!');
     super(props);
     this.state = {
-      selected: this.props.selected.split(',') || [],
+      selected: this.props.selected &&  this.props.selected.split(',') || [],
       contents: this.props.contents,
-      grid: GRID_STRUCTURE,
+      grid: this.props.grid || GRID_STRUCTURE,
     }
     this.handleClick = this.handleClick.bind(this);
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.contents != prevProps.contents) {
-      this.populateGridContents();
-    }
-  }
-
-  populateGridContents = () => {
-    const {contents} = this.props;
-    const {selected} = this.state;
-    if(!contents) {
-      return;
-    }
-    const nextGrid = Object.assign([], GRID_STRUCTURE)
-    nextGrid.forEach((row) => {
-      row.forEach((cell) => {
-        if (contents[cell.id]) {
-          cell.contents = contents[cell.id] || undefined;
-        }
-        if (selected.includes(cell.id)) {
-          cell.selected = true
-        }
-      })
-    })
-    this.setState({grid: nextGrid});
   }
 
   handleClick(val) {
@@ -156,8 +131,6 @@ class TalentMatrix extends React.Component {
                 >
                   {
                     row.map(cell => {
-
-                      
                       return (
                         <Col
                           key={`${context}-${cell.id}`}

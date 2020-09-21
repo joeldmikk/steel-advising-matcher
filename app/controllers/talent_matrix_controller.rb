@@ -1,7 +1,8 @@
 class TalentMatrixController < ApplicationController
 
   def overview
-    @overview = TalentMatrix.overview
+    @overview = { overview: TalentMatrix.overview, clientsOverview: TalentMatrix.clients_overview, consultantsOverview: TalentMatrix.consultants_overview }
+    # @overview = TalentMatrix.overview
     render json: @overview
   end
 

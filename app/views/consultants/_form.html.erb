@@ -35,11 +35,13 @@
     <%= form.hidden_field :talents, label: "Talents" %>
   </div>
 
-  <%= react_component("TalentMatrix", { 
-    mode: 'form', 
-    talent_input_id: 'consultant_talents', 
-    selected: consultant&.talents, 
-    context: 'new-constultant' }) %>
+  <div class="field">
+    <%= react_component("TalentMatrix", { 
+      mode: 'form', 
+      talent_input_id: 'consultant_talents', 
+      selected: consultant&.talents, 
+      context: 'new-constultant' }) %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

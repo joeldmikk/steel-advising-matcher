@@ -1,32 +1,38 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Container, Tabs, Tab } from 'react-bootstrap'
+import { GRID_STRUCTURE } from "../constants.js";
 import TalentMatrix from './TalentMatrix'
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {key: 'overview', overview: {}, clientsOverview: {}, consultantsOverview: {} }
+    this.state = {
+      key: 'overview',
+      overview: this.props.overview,
+      clientsOverview: this.props.clientsOverview,
+      consultantsOverview: this.props.consultantsOverview,
+      overviewGrid: this.populateGridContents(this.props.overview),
+      clientsGrid: this.populateGridContents(this.props.clientsOverview),
+      consultantsGrid: this.populateGridContents(this.props.consultantsOverview),
+    }
   }
 
-  componentDidMount = () => {
-    fetch(this.props.overviewUrl)
-      .then((response) => { return response.json()})
-      .then((data) => {
-        this.setState({overview: data});
+  populateGridContents = (contents) => {
+    if(!contents) {
+      return;
+    }
+    const nextGrid = Object.assign([], GRID_STRUCTURE)
+    nextGrid.forEach((row) => {
+      row.forEach((cell) => {
+        if (contents[cell.id]) {
+          cell.contents = contents[cell.id] || undefined;
+        }
       })
-    fetch(this.props.clientOverviewUrl)
-      .then((response) => { return response.json()})
-      .then((data) => {
-        this.setState({clientsOverivew: data});
-      })
-    fetch(this.props.consultantOverviewUrl)
-      .then((response) => {return response.json()})
-      .then((data) => {
-        this.setState({consultantsOverview: data});
-      })
+    })
+    return nextGrid;
   }
-  
+
   render () {
     return (
       <React.Fragment>
@@ -42,6 +48,7 @@ class Home extends React.Component {
                 context="overview"
                 selected=""
                 contents={this.state.overview}
+                grid={this.state.overviewGrid}
               />
             </Tab>
             <Tab eventKey="client-view" title="Client Overview">
@@ -50,6 +57,7 @@ class Home extends React.Component {
                 context="clients-overview"
                 selected=""
                 contents={this.state.clientsOverview}
+                grid={this.state.clientsGrid}
               />
             </Tab>
             <Tab eventKey="consultant-view" title="Consultant Overview">
@@ -58,6 +66,7 @@ class Home extends React.Component {
                 context="consultants-overview"
                 selected=""
                 contents={this.state.consultantsOverview}
+                grid={this.state.consultantsGrid}
               />
             </Tab>
           </Tabs>
